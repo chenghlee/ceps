@@ -212,11 +212,14 @@ slashes (`/`), must be percent-encoded in accordance with ECMA-427 Clause 5.4.
 
 Since existing CEPs do not define a strict relationship between a package artifact's build string
 and build number, this CEP does not require that the `build` and `build_number` qualifiers in a
-conda PURL be mutually exclusive. Further, this CEP does not specify which of these two qualifiers takes
-precedence in cases where their simultaneous use in a conda PURL creates a conflict. Producers of
-conda PURLs must take care that their use of these qualifiers does not create a conflict, and
-consumers of conda PURLs are RECOMMENDED to treat conflicting use of these qualifiers as an invalid
-or erroneous PURL.
+conda PURL be mutually exclusive. Further, this CEP does not specify which of these two qualifiers
+takes precedence in cases where their simultaneous use in a conda PURL creates a conflict; e.g., a
+qualifier component `?build=1234abcd_1&build_number=42` is allowed under this specification, even
+though the `build` qualifier suggests the corresponding PURL refers to build number 1 of the
+identified package while the `build_number` qualifier suggests the PURL refers to build number 42.
+Producers of conda PURLs must take care that their use of these qualifiers does not create a
+conflict, and consumers of conda PURLs are RECOMMENDED to treat conflicting use of these qualifiers
+as an invalid or erroneous PURL.
 
 This CEP explicitly _undefines_ the `channel` qualifier found in the [existing conda PURL
 definition][purl-conda-def]. The `channel` qualifier corresponds to a weakly-defined concept not
@@ -331,12 +334,13 @@ These breaking changes are considered acceptable by the author(s) of this CEP, a
 conda PURL definition fails to properly capture existing standards (i.e., CEPs) and commonly-used
 patterns in the conda ecosystem. Among the motivations for these breaking changes:
 
-- Simple PURLs like `pkg:conda/python` and `pkg:conda/python?channel=conda-forge` are accepted
-  under the existing conda PURL definition but cannot be used to identify actual package artifacts,
-  as that definition's default values produces non-existent URLs. The existing conda PURL
-  definition effectively requires that _every_ conda PURL explicitly provides a `repository_url`
-  qualifier, possibly combined with a `channel` qualifier in an unspecified way, to produce a URL
-  that would correspond to an actual package artifact.
+- PURLs like `pkg:conda/python` and `pkg:conda/python?channel=conda-forge` are accepted under the
+  existing conda PURL definition but cannot be used to identify actual package artifacts, as that
+  definition's default values produces non-existent channel base URLs (`https://repo.anaconda.com/`
+  and `https://repo.anaconda.com/conda-forge`, respectively).  The existing conda PURL definition
+  effectively requires that _every_ conda PURL explicitly provides a `repository_url` qualifier,
+  possibly combined with a `channel` qualifier in an unspecified way, to produce a URL that would
+  correspond to actual package artifacts.
 - The prohibition of a `namespace` component in the existing conda PURL definition means
   commonly-used patterns in the conda ecosystem (e.g., `channel::package=version`) cannot be
   translated to "intuitive"-/similar-looking PURLs (e.g., `pkg:conda/channel/package@version`).
