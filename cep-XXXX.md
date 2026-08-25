@@ -287,7 +287,7 @@ default public repository (i.e., `default_repository_url`) for conda packages SH
 #### `examples` property
 
 The ECMA-427 Clause 6.10 `PURL examples` property of the conda PURL type definition SHALL consist
-of the PURLs listed in the "Examples" section of this CEP.
+of the PURLs listed in the "Normative Examples" section of this CEP.
 
 #### `reference_urls` property
 
@@ -302,14 +302,19 @@ treated as normative and not just informative.
 
 ## Examples
 
-- `pkg:conda/main/python`: basic usage, identifying _all_ `python` packages from Anaconda
-- `pkg:conda/conda-forge/python@3.13.12?build=hc97d973_100_cp313&subdir=linux-64`: basic usage,
-  identifying exactly one specific `python` build from conda-forge.
-- `pkg:conda/python?repository_url=https%3A%2F%2Frepo.anaconda.com%2Fpkgs%2Fmain`: using the
-  `repository_url` qualifier to fully identify the channel base URL
-- `pkg:conda/conda-forge/python?repository_url=https%3A%2F%2Fprefix.dev`: using the
-  `repository_url` qualifier to identify packages hosted by a conda-forge mirror.
+### Normative Examples
 
+- `pkg:conda/main/python`: Identifies all versions and builds, for all platforms (i.e., operating
+  systems and CPU architecture), of Python in the Anaconda `main` channel.
+- `pkg:conda/conda-forge/python@3.13.12`: Identifies all builds, for all platforms, of Python
+  3.13.12 in the `conda-forge` channel.
+- `pkg:conda/conda-forge/python@3.13.12?build=hc97d973_100_cp313&subdir=linux-64`: Identifies a
+  specific build of Python 3.13.12, for x86\_64 Linux, in the `conda-forge` channel.
+- `pkg:conda/numpy@2.5.0?subdir=win-64&repository_url=https%3A%2F%2Frepo.anaconda.cloud%2Frepo%2Fmain`:
+  Identifies all builds of NumPy 2.5.0, for x86\_64 Windows, in Anaconda's commercial `main`
+  repository, using the `repository_url` qualifier to set the channel base URL
+- `pkg:conda/conda-forge/numpy@2.5.2?repository_url=https%3A%2F%2Fprefix.dev`: Identifies all
+  builds of NumPy 2.5.2, for all platforms, in the `conda-forge` channel hosted by prefix.dev
 
 ## Backwards Compatibility
 
