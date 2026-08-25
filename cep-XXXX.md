@@ -113,11 +113,13 @@ for Anaconda-built packages must use "main", "r", or "msys2" for their `namespac
 
 #### `name` component
 
-The `name` component MUST be the [distributable package name](./cep-0026.md#package-names) of the
-identified artifact(s), as defined in CEP 26.
+The `name` component MUST be the [package name](./cep-0026.md#package-names) of the
+identified artifact, as defined in CEP 26.
 
-Conda PURLs MUST NOT be used to identify conda virtual packages since they do not correspond to
-any concrete package artifact and only exist on the client side.
+Note that while both distributable and virtual package names are acceptable as PURL `name`
+components, this CEP leaves open the question of how to properly identify conda virtual packages
+using PURLs, as described in the "Future Work" section. Until this question is resolved, systems
+processing conda PURLs should exercise caution when handling virtual packages.
 
 #### `version` component
 
@@ -363,16 +365,22 @@ with this standard.
   type of path (i.e., file or directory) that could possibly be included in conda packages.
   Updates to this CEP or additional CEPs may be needed if any gaps are identified in the `subpath`
   component specifications.
-- This CEP provides the `repository_url` qualifier that can be used to identify a package on a
-  _specific_ mirror of a channel. However, this CEP does _not_ define a way to identify a specific
-  package artifact that appears across multiple mirrors; e.g., a single PURL that would
-  simultaneously identify a conda-forge package hosted on both `conda.anaconda.org/conda-forge`
-  and `prefix.dev/conda-forge`. Supporting such PURLs would require additional work, including
-  formalizing the concept of "mirrors" for conda channels and specifying which PURL components or
-  qualifiers should be used to identify the set of mirrors for a given package. (Due to the
+- This CEP provides mechanisms for using the `namespace` component and/or `repository_url`
+  qualifier to identify a conda package as it exists at a single location. However, this CEP does
+  _not_ define ways to identify conda packages that exist across multiple locations; e.g., a single
+  PURL that can simultaneously identify a conda-forge package mirrored on both
+  `conda.anaconda.org/conda-forge` and `prefix.dev/conda-forge`, or a PURL that can identify all
+  packages named `python` (regardless of contents) across all channels in the ecosystem. Supporting
+  such PURLs is a desired feature but would require additional work, including formalizing the
+  concept of "mirrors" for conda packages and channels, as well as specifying which PURL components
+  or qualifiers should be used to identify the set of locations for a given package. (Due to the
   fairly portable nature of conda packages, the combination of shortened channel name, package
   name, version string, and build string may not be sufficient to uniquely identify across all
   possible repositories.)
+- This CEP recognizes the utility of PURLs to identify conda virtual packages, which do not exist
+  on any channel. However, this CEP defers specifying PURLs for such packages, as doing so would
+  introduce additional complexity to how the `namespace` component and `repository_url` qualifier
+  need to be processed and may require changes to the upstream PURL spec/ECMA-427 itself.
 
 ## References
 
