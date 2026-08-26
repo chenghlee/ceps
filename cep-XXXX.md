@@ -337,10 +337,10 @@ patterns in the conda ecosystem. Among the motivations for these breaking change
 - PURLs like `pkg:conda/python` and `pkg:conda/python?channel=conda-forge` are accepted under the
   existing conda PURL definition but cannot be used to identify actual package artifacts, as that
   definition's default values produces non-existent channel base URLs (`https://repo.anaconda.com/`
-  and `https://repo.anaconda.com/conda-forge`, respectively).  The existing conda PURL definition
-  effectively requires that _every_ conda PURL explicitly provides a `repository_url` qualifier,
-  possibly combined with a `channel` qualifier in an unspecified way, to produce a URL that would
-  correspond to actual package artifacts.
+  and `https://repo.anaconda.com/conda-forge`, respectively).  The existing (v1.0.1) conda PURL
+  definition effectively requires that _every_ conda PURL explicitly provides a `repository_url`
+  qualifier, possibly combined with a `channel` qualifier in an unspecified way, to produce a URL
+  that would correspond to actual package artifacts.
 - The prohibition of a `namespace` component in the existing conda PURL definition means
   commonly-used patterns in the conda ecosystem (e.g., `channel::package=version`) cannot be
   translated to "intuitive"-/similar-looking PURLs (e.g., `pkg:conda/channel/package@version`).
