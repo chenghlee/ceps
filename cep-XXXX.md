@@ -45,7 +45,7 @@ all capitals, as shown here.
 
 For the purposes of this CEP, the phrase "existing conda PURL definition" refers to the
 [v1.0.1 revision of `types/conda-definition.json`][purl-conda-def], which is canonically available
-in the https://github.com/package-url/purl-spec repository.
+in the <https://github.com/package-url/purl-spec> repository.
 
 For the purposes of this CEP, references to sections of [ECMA-427][ECMA427] are relative to the 1st
 Edition (December 2025) of that standard.
@@ -55,7 +55,7 @@ Edition (December 2025) of that standard.
 ECMA-427 Clause 5 ("Package-URL specification") states:
 
 > A PURL is a URL composed of seven components:  
->   scheme:type/namespace/name@version?qualifiers#subpath
+> scheme:type/namespace/name@version?qualifiers#subpath
 
 For conda PURLs, these seven components are defined as follows:
 
@@ -285,7 +285,7 @@ interpretation is defined in the "`namespace` component" and "`qualifier` compon
 
 To maintain compatibility with the default behavior of existing conda-compatible clients, the
 default public repository (i.e., `default_repository_url`) for conda packages SHALL be
-"https://conda.anaconda.org".
+`https://conda.anaconda.org`.
 
 #### `examples` property
 
