@@ -54,7 +54,7 @@ Edition (December 2025) of that standard.
 
 ECMA-427 Clause 5 ("Package-URL specification") states:
 
-> A PURL is a URL composed of seven components:  
+> A PURL is a URL composed of seven components:
 > scheme:type/namespace/name@version?qualifiers#subpath
 
 For conda PURLs, these seven components are defined as follows:
